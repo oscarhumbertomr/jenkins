@@ -14,12 +14,10 @@ RUN apt-get update && apt-get install -y \
     vim \
     --no-install-recommends \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install pdo pdo_mysql pdo_pgsql zip intl xmlrpc soap opcache \
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql soap opcache \
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copia el contenido del directorio actual al directorio de trabajo del contenedor
 COPY . /var/www/html/
 WORKDIR /var/www/html/
-
-
